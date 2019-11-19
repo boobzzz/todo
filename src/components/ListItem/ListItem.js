@@ -1,17 +1,20 @@
 import React from 'react';
 
-const ListItem = (props) => (
-    <li>
-        <input
-            type="checkbox"
-            id={props.id}
-            name=""
-            onChange={props.changed}
-            checked={props.checked}/>
-        <span>{props.title}</span>
-        {" "}
-        <button type="button" onClick={props.clicked}>x</button>
-    </li>
-)
+import './ListItem.css';
+
+const ListItem = (props) => {
+    return (
+        <li className={props.class}>
+            <input
+                type="checkbox"
+                id={props.id}
+                onChange={props.change}
+            />
+            <span>{props.tobedone}</span>
+            {" "}
+            <button type="button" id={props.id} onClick={props.click}>x</button>
+        </li>
+    )
+}
 
 export default ListItem;
