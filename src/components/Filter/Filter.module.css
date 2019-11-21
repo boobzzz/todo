@@ -1,0 +1,15 @@
+.filterList {
+    display: inline-block;
+    margin: 0;
+    padding-left: 10px;
+    list-style: none;
+}
+.filterList li {
+    float: left;
+    margin-right: 5px;
+}
+.filter {
+    text-decoration: none;
+    padding: 5px;
+    border: 1px solid lightgrey;
+}

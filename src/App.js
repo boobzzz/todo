@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import genId from 'nanoid/generate';
 
-import classes from './App.module.css';
 import ListItem from './components/ListItem/ListItem';
+import Filter from './components/Filter/Filter';
+
+import classes from './App.module.css';
 
 const chars = '0123456789abcdefghijklmnopqrstuvwxyz';
 
 export default class App extends Component {
     state = {
         value: '',
+        filter: 'all',
         listItems: [
             {id: 'fgt1', tobedone: '1-st do smth', done: false},
             {id: 'mnj2', tobedone: '2-nd do smth', done: false},
@@ -25,7 +28,6 @@ export default class App extends Component {
                 item.id === id ? item.done = !item.done : null
             )
         })
-        console.log(listItems)
     }
 
     onInputHandler = (event) => {
@@ -58,17 +60,23 @@ export default class App extends Component {
         })
     }
 
-    filterListItems = (event) => {
-        let listItems = [...this.state.listItems]
+    filterToggle = (event) => {
         let id = event.target.id
 
-        if (id === 'all') return listItems
-        if (id === 'active') return listItems.filter(item => !item.done)
-        if (id === 'done') return listItems.filter(item => item.done)
+        this.setState({
+            filter: id
+        })
+    }
+
+    filterListItems(list, curFilter) {
+        if (curFilter === 'all') return list
+        if (curFilter === 'active') return list.filter(item => !item.done)
+        if (curFilter === 'done') return list.filter(item => item.done)
     }
 
     render() {
-        let { value, listItems } = this.state;
+        let { value, listItems, filter } = this.state;
+        let filtered = this.filterListItems(listItems, filter);
 
         return (
             <div className={classes.App}>
@@ -76,21 +84,16 @@ export default class App extends Component {
                 {" "}
                 <button type="button" onClick={this.addListItem}>ADD</button>
                 <ul className={classes.list}>
-                    {listItems.map(li =>
+                    {filtered.map(item =>
                         <ListItem
-                            {...li}
-                            key={li.id}
-                            class={li.done ? 'done' : null}
+                            {...item}
+                            key={item.id}
+                            classDone={item.done}
                             change={this.toggleCheckHandler}
                             click={this.removeListItem} />
                     )}
                 </ul>
-                <span>Show: </span>
-                <a href="#1" id="all" className={classes.filter} onClick={this.filterListItems}>ALL</a>
-                {" "}
-                <a href="#1" id="active" className={classes.filter} onClick={this.filterListItems}>ACTIVE</a>
-                {" "}
-                <a href="#1" id="done" className={classes.filter} onClick={this.filterListItems}>DONE</a>
+                <Filter clicked={this.filterToggle} />
             </div>
         )
     }

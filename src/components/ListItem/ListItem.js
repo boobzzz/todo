@@ -4,7 +4,7 @@ import './ListItem.css';
 
 const ListItem = (props) => {
     return (
-        <li className={props.class}>
+        <li className={props.classDone ? 'done' : null}>
             <input
                 type="checkbox"
                 id={props.id}

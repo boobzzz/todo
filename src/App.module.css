@@ -2,11 +2,6 @@
     font-family: sans-serif;
 }
 .list {
+    padding-left: 10px;
     list-style: none;
-}
-
-.filter {
-    text-decoration: none;
-    padding: 5px;
-    border: 1px solid lightgrey;
 }
