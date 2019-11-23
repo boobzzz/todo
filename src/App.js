@@ -20,13 +20,21 @@ export default class App extends Component {
     }
 
     toggleCheckHandler = (event) => {
-        let listItems = [...this.state.listItems]
+        // let { listItems } = this.state;
         let id = event.target.id
 
-        this.setState(state => {
-            listItems.map(item =>
-                item.id === id ? item.done = !item.done : null
-            )
+        // this.setState(state => {
+        //     return listItems.map(item =>
+        //         item.id === id ? item.done = !item.done : item.done
+        //     )
+        // })
+
+        this.setState(({listItems}) => {
+            return {
+                listItems: listItems.map(item =>
+                    item.id === id ? {...item, done: !item.done} : item
+                )
+            }
         })
     }
 
@@ -37,21 +45,16 @@ export default class App extends Component {
     }
 
     addListItem = () => {
-        let listItems = [...this.state.listItems]
-        let newItem = {id: genId(chars, 5), tobedone: this.state.value, done: false}
-
-        listItems.push(newItem)
+        let newItem = {id: genId(chars, 5), tobedone: this.state.value, done: false};
 
         this.setState({
-            listItems: listItems
-        })
-        this.setState({
-            value: ''
+            value: '',
+            listItems: [...this.state.listItems, newItem]
         })
     }
 
     removeListItem = (event) => {
-        let listItems = [...this.state.listItems]
+        let { listItems } = this.state;
         let id = event.target.id
 
         listItems = listItems.filter(item => item.id !== id)
