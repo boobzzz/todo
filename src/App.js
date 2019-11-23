@@ -79,13 +79,16 @@ export default class App extends Component {
 
     render() {
         let { value, listItems, filter } = this.state;
+        let disabled = value === '' ? 'disabled' : null;
         let filtered = this.filterListItems(listItems, filter);
 
         return (
             <div className={classes.App}>
                 <input type="text" value={value} onChange={this.onInputHandler}/>
                 {" "}
-                <button type="button" onClick={this.addListItem}>ADD</button>
+                <button type="button" onClick={this.addListItem} disabled={disabled}>
+                    ADD
+                </button>
                 <ul className={classes.list}>
                     {filtered.map(item =>
                         <ListItem
