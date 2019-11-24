@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './ListItem.css';
+import classes from './ListItem.module.css';
 
 const ListItem = (props) => {
     return (
-        <li className={props.classDone ? 'done' : null}>
+        <li className={props.classDone ? classes.done : null}>
             <input
                 type="checkbox"
                 id={props.id}
