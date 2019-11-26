@@ -20,14 +20,7 @@ export default class App extends Component {
     }
 
     toggleCheckHandler = (event) => {
-        // let { listItems } = this.state;
         let id = event.target.id
-
-        // this.setState(state => {
-        //     return listItems.map(item =>
-        //         item.id === id ? item.done = !item.done : item.done
-        //     )
-        // })
 
         this.setState(({listItems}) => {
             return {
