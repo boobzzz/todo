@@ -85,11 +85,12 @@ export default class App extends Component {
                 <ul className={classes.list}>
                     {filtered.map(item =>
                         <ListItem
-                            {...item}
                             key={item.id}
+                            id={item.id}
+                            todo={item.tobedone}
                             classDone={item.done}
-                            change={this.toggleCheckHandler}
-                            click={this.removeListItem} />
+                            changed={this.toggleCheckHandler}
+                            clicked={this.removeListItem} />
                     )}
                 </ul>
                 <Filter clicked={this.filterToggle} />

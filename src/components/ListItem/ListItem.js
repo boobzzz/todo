@@ -8,11 +8,11 @@ const ListItem = (props) => {
             <input
                 type="checkbox"
                 id={props.id}
-                onChange={props.change}
+                onChange={props.changed}
             />
-            <span>{props.tobedone}</span>
+            <span>{props.todo}</span>
             {" "}
-            <button type="button" id={props.id} onClick={props.click}>x</button>
+            <button type="button" id={props.id} onClick={props.clicked}>x</button>
         </li>
     )
 }
