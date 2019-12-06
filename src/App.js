@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import genId from 'nanoid/generate';
 
-import ListItem from './components/ListItem/ListItem';
+import Input from './components/Input/Input';
+import Button from './components/Button/Button';
+import List from './components/List/List';
 import Filter from './components/Filter/Filter';
 
 import classes from './App.module.css';
@@ -77,22 +79,13 @@ export default class App extends Component {
 
         return (
             <div className={classes.App}>
-                <input type="text" value={value} onChange={this.onInputHandler}/>
+                <Input value={value} changed={this.onInputHandler} />
                 {" "}
-                <button type="button" onClick={this.addListItem} disabled={disabled}>
-                    ADD
-                </button>
-                <ul className={classes.list}>
-                    {filtered.map(item =>
-                        <ListItem
-                            key={item.id}
-                            id={item.id}
-                            todo={item.tobedone}
-                            classDone={item.done}
-                            changed={this.toggleCheckHandler}
-                            clicked={this.removeListItem} />
-                    )}
-                </ul>
+                <Button clicked={this.addListItem} disable={disabled} />
+                <List
+                    listItems={filtered}
+                    changed={this.toggleCheckHandler}
+                    clicked={this.removeListItem} />
                 <Filter clicked={this.filterToggle} />
             </div>
         )

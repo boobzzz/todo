@@ -12,7 +12,9 @@ const ListItem = (props) => {
             />
             <span>{props.todo}</span>
             {" "}
-            <button type="button" id={props.id} onClick={props.clicked}>x</button>
+            <button type="button" id={props.id} onClick={props.clicked}>
+                x
+            </button>
         </li>
     )
 }
