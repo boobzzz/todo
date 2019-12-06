@@ -22,9 +22,9 @@ export default class App extends Component {
     }
 
     toggleCheckHandler = (event) => {
-        let id = event.target.id
+        let { id } = event.target;
 
-        this.setState(({listItems}) => {
+        this.setState(({ listItems }) => {
             return {
                 listItems: listItems.map(item =>
                     item.id === id ? {...item, done: !item.done} : item
@@ -50,7 +50,7 @@ export default class App extends Component {
 
     removeListItem = (event) => {
         let { listItems } = this.state;
-        let id = event.target.id
+        let { id } = event.target;
 
         listItems = listItems.filter(item => item.id !== id)
         this.setState({
@@ -59,7 +59,7 @@ export default class App extends Component {
     }
 
     filterToggle = (event) => {
-        let id = event.target.id
+        let { id } = event.target;
 
         this.setState({
             filter: id

@@ -9,6 +9,7 @@ const ListItem = (props) => {
                 type="checkbox"
                 id={props.id}
                 onChange={props.changed}
+                defaultChecked={false}
             />
             <span>{props.todo}</span>
             {" "}
